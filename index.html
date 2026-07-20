@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-bg-color="#FCFBF9">
+<rect width="200" height="200" fill="#FCFBF9"/>
+<circle cx="100" cy="100" r="46" fill="none" stroke="#FDA9C1" stroke-width="3"/>
+<text x="100" y="112" font-family="Georgia, serif" font-size="44" fill="#2F3437" text-anchor="middle">B</text>
+</svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #FCFBF9; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: #FDA9C1; }
+  @keyframes bgc-bounce { 0%,100% { transform: translateY(0); opacity: 0.65; } 50% { transform: translateY(8px); opacity: 1; } }
+  @keyframes heroFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<div style="font-family: 'Public Sans', sans-serif; color: #5F6664; background: #FCFBF9; line-height: 1.7; -webkit-font-smoothing: antialiased;">
+
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 30; background: {{ headerBg }}; box-shadow: {{ headerShadow }}; transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ headerPad }}; display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: 12px; color: {{ navColor }}; transition: color 0.4s ease, padding 0.4s ease;">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; color: inherit; min-width: 0; flex-shrink: 0;">
+        <img src="assets/blossom-grove-logo.png" alt="Blossom Grove Care" style="height: {{ logoSize }}; width: {{ logoSize }}; object-fit: contain; flex-shrink: 0;" />
+        <span style="font-family: 'Newsreader', serif; font-size: {{ logoFontSize }}; font-weight: 500; letter-spacing: 0.01em; color: inherit; white-space: nowrap;">Blossom Grove Care</span>
+      </a>
+      <nav style="display: {{ navDisplayDesktop }}; align-items: center; gap: 30px;">
+        <a href="#why" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Why Us</a>
+        <a href="#willow" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Our Homes</a>
+        <a href="#approach" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Our Approach</a>
+        <a href="services.html" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Services</a>
+        <a href="#professionals" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Referrals</a>
+        <a href="#team" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Team</a>
+        <a href="#careers" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Careers</a>
+        <a href="#contact" style="font-size: 13px; font-weight: 600; color: #2F3437; background: #FDA9C1; padding: 10px 24px; border-radius: 14px; letter-spacing: 0.03em;" style-hover="background:#f792af;">Contact</a>
+      </nav>
+      <div style="display: {{ navDisplayMobile }}; align-items: center; gap: 10px; flex-shrink: 0;">
+        <a href="#contact" style="font-size: 12px; font-weight: 600; color: #2F3437; background: #FDA9C1; padding: 8px 14px; border-radius: 14px; letter-spacing: 0.02em; white-space: nowrap;">Contact</a>
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 14px; border: 1px solid currentColor; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; color: inherit;">
+          <span style="width: 14px; height: 1px; background: currentColor;"></span>
+          <span style="width: 14px; height: 1px; background: currentColor;"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div style="display: {{ overlayDisplay }}; position: fixed; inset: 0; z-index: 40; background: #FCFBF9; flex-direction: column; align-items: center; justify-content: center; gap: 28px;">
+    <a href="#why" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Why Us</a>
+    <a href="#willow" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Our Homes</a>
+    <a href="#approach" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Our Approach</a>
+    <a href="services.html" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Services</a>
+    <a href="#professionals" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Referrals</a>
+    <a href="#team" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Team</a>
+    <a href="#careers" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Careers</a>
+    <a href="#contact" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #C77792;">Contact</a>
+    <button onClick="{{ closeMenu }}" style="position: absolute; top: 26px; right: 32px; width: 38px; height: 38px; border: 1px solid #E9E3DE; background: transparent; border-radius: 14px; font-size: 18px; color: #2F3437; cursor: pointer;">×</button>
+  </div>
+
+  <section id="top" style="background: #FCFBF9; display: grid; grid-template-columns: {{ heroCols }}; min-height: {{ heroMinHeight }}; align-items: stretch;">
+    <div style="order: {{ heroContentOrder }}; display: flex; align-items: center; padding: {{ heroContentPad }};">
+      <div style="max-width: 460px; width: 100%;">
+        <p style="font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6664; margin: 0 0 24px; display: flex; align-items: center; gap: 10px; animation: heroFade 0.8s ease 0.05s both;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; display: inline-block;"></span>Children's Residential Care · Coventry</p>
+        <h1 style="font-family: 'Newsreader', serif; font-size: clamp(36px, 5vw, 52px); line-height: 1.18; font-weight: 500; color: #2F3437; margin: 0 0 26px; letter-spacing: -0.01em; animation: heroFade 0.9s ease 0.15s both;">A place to belong.<br/>A foundation to grow.</h1>
+        <p style="font-size: 17px; line-height: 1.75; margin: 0 0 40px; color: #5F6664; font-weight: 300; animation: heroFade 0.9s ease 0.25s both;">A home shaped by warmth, familiar faces and the quiet rhythm of everyday life — built on relationships that stay steady, for as long as they're needed.</p>
+        <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap; animation: heroFade 0.9s ease 0.35s both;">
+          <a href="#professionals" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 32px; border-radius: 14px; transition: background 0.3s ease, transform 0.3s ease;" style-hover="background:#f792af;transform:translateY(-1px);">Make a Referral</a>
+          <a href="#willow" style="font-size: 14px; font-weight: 500; letter-spacing: 0.02em; color: #2F3437; padding-bottom: 4px; border-bottom: 1px solid #C7C1BB; transition: border-color 0.3s ease, color 0.3s ease;" style-hover="border-bottom-color:#FDA9C1;color:#C77792;">Explore Our Homes</a>
+        </div>
+      </div>
+    </div>
+    <div style="order: {{ heroImgOrder }}; position: relative; overflow: hidden; height: {{ heroImgHeight }};">
+      <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1400&auto=format&fit=crop" alt="Bright, homely living room" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.01); transition: transform 6s ease;" style-hover="transform:scale(1.06);" />
+      <span style="position: absolute; bottom: 20px; left: 20px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.88); padding: 5px 12px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+    </div>
+  </section>
+
+  <section id="why" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }}; display: grid; grid-template-columns: {{ whyOuterCols }}; gap: {{ gapLg }};">
+    <div>
+      <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Why Blossom Grove Care</p>
+      <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 3.4vw, 38px); color: #2F3437; margin: 0 0 24px; font-weight: 500; line-height: 1.3;">Quality over quantity, in everything we do</h2>
+      <p style="font-size: 15px; margin: 0 0 28px; color: #5F6664; max-width: 340px;">A small number of homes, done properly — so every detail of daily life reflects genuine care.</p>
+      <a href="#approach" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; padding-bottom: 4px; border-bottom: 1px solid #2F3437; display: inline-block;" style-hover="border-bottom-color:#FDA9C1;color:#C77792;">Read our approach →</a>
+    </div>
+    <div>
+      <div style="display: grid; grid-template-columns: 72px 1fr; gap: 32px; padding: 0 0 40px; border-bottom: 1px solid #E9E3DE;">
+        <p style="font-family: 'Newsreader', serif; font-size: 28px; color: #E9AFC1; margin: 0; font-weight: 500;">01</p>
+        <div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 22px; color: #2F3437; margin: 0 0 12px; font-weight: 500;">Relationship-led</h3>
+          <p style="font-size: 15px; margin: 0; color: #5F6664; max-width: 480px;">Consistent, caring adults who build genuine trust with every child, over time — not shift-work strangers.</p>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 72px 1fr; gap: 32px; padding: 40px 0; border-bottom: 1px solid #E9E3DE;">
+        <p style="font-family: 'Newsreader', serif; font-size: 28px; color: #E9AFC1; margin: 0; font-weight: 500;">02</p>
+        <div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 22px; color: #2F3437; margin: 0 0 12px; font-weight: 500;">Trauma-informed</h3>
+          <p style="font-size: 15px; margin: 0; color: #5F6664; max-width: 480px;">Every part of daily life is shaped by an understanding of each child's experiences and needs.</p>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 72px 1fr; gap: 32px; padding: 40px 0 0;">
+        <p style="font-family: 'Newsreader', serif; font-size: 28px; color: #E9AFC1; margin: 0; font-weight: 500;">03</p>
+        <div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 22px; color: #2F3437; margin: 0 0 12px; font-weight: 500;">Deliberately small</h3>
+          <p style="font-size: 15px; margin: 0; color: #5F6664; max-width: 480px;">Fewer homes, done properly — so every child receives genuine individual attention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="willow" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #F7F4F2;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPadLg }};">
+      <div style="display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }}; align-items: center; margin-bottom: 64px;">
+        <div style="aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative; border: 1px solid #E9E3DE;">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" alt="Willow Grove House interior" style="width: 100%; height: 100%; object-fit: cover; transition: transform 6s ease;" style-hover="transform:scale(1.05);" />
+          <span style="position: absolute; bottom: 16px; left: 16px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.85); padding: 4px 10px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+        </div>
+        <div>
+          <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Our Homes</p>
+          <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 4vw, 40px); color: #2F3437; margin: 0 0 28px; font-weight: 500; line-height: 1.2;">Welcome to Willow Grove House</h2>
+          <p style="font-size: 16px; margin: 0 0 20px; color: #5F6664;">Willow Grove House has been thoughtfully designed to provide a calm, comfortable and nurturing environment where children can feel at ease. Every space has been carefully considered to create the warmth and familiarity of a family home, while providing the stability and support children need to flourish.</p>
+          <p style="font-size: 16px; margin: 0; color: #5F6664;">From shared spaces that encourage connection to private bedrooms that offer comfort and security, our home is designed to help children feel a genuine sense of belonging from the moment they walk through the door.</p>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: {{ willowCardCols }}; gap: 28px;">
+        <div style="background: #FCFBF9; border: 1px solid #E9E3DE; padding: 36px 32px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <div style="width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #FDA9C1; margin-bottom: 22px;"></div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 19px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">A Warm, Family Home</h3>
+          <p style="font-size: 14.5px; margin: 0; color: #5F6664;">Homely interiors and shared spaces designed to feel comfortable, not clinical.</p>
+        </div>
+        <div style="background: #FCFBF9; border: 1px solid #E9E3DE; padding: 36px 32px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <div style="width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #A8B8A5; margin-bottom: 22px;"></div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 19px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Calm Spaces</h3>
+          <p style="font-size: 14.5px; margin: 0; color: #5F6664;">Quiet, considered environments that help children feel settled and secure.</p>
+        </div>
+        <div style="background: #FCFBF9; border: 1px solid #E9E3DE; padding: 36px 32px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <div style="width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #FDA9C1; margin-bottom: 22px;"></div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 19px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Small by Design</h3>
+          <p style="font-size: 14.5px; margin: 0; color: #5F6664;">A small number of children in every home, so each one is truly known.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #FCFBF9;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }};">
+      <div style="max-width: 700px; margin: 0 auto 56px; text-align: center;">
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Our Approach</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 3.6vw, 40px); color: #2F3437; margin: 0 0 28px; font-weight: 500; line-height: 1.3;">Relationships are at the heart of everything we do</h2>
+        <p style="font-size: 16px; margin: 0 0 20px; color: #5F6664;">We believe positive relationships create the foundation for growth. By providing consistency, understanding and genuine care, we create an environment where children feel safe to build trust, develop confidence and take positive steps forward.</p>
+        <p style="font-size: 16px; margin: 0; color: #5F6664;">Every child is different, which is why we take the time to understand their individual needs, strengths and aspirations. Working alongside families, social workers, education providers and healthcare professionals, we provide care that is thoughtful, consistent and centred around each child's journey.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: {{ approachCardCols }}; gap: 24px;">
+        <div style="background: #F7F4F2; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <div style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #FDA9C1; margin-bottom: 20px; position: relative;"><div style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #FDA9C1; position: absolute; top: 9px; left: 9px;"></div></div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Meaningful Relationships</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">Building trusted relationships that help children feel secure, understood and valued.</p>
+        </div>
+        <div style="background: #F7F4F2; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <div style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #A8B8A5; margin-bottom: 20px;"></div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Individual Growth</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">Supporting confidence, independence and personal development.</p>
+        </div>
+        <div style="background: #F7F4F2; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <div style="width: 32px; height: 32px; border-radius: 14px; border: 1.5px solid #FDA9C1; margin-bottom: 20px;"></div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Everyday Stability</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">Creating consistent routines and a nurturing home environment.</p>
+        </div>
+        <div style="background: #F7F4F2; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <div style="width: 32px; height: 32px; margin-bottom: 20px; position: relative;"><div style="width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #A8B8A5; position: absolute; left: 0; top: 6px;"></div><div style="width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #FDA9C1; position: absolute; left: 12px; top: 6px;"></div></div>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Working Together</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">Partnering with families and professionals to provide joined-up support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-choose" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #F7F4F2;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }};">
+      <div style="max-width: 700px; margin: 0 auto 56px; text-align: center;">
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Why Choose Blossom Grove Care</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 3.6vw, 40px); color: #2F3437; margin: 0 0 28px; font-weight: 500; line-height: 1.3;">Thoughtfully designed around every child</h2>
+        <p style="font-size: 16px; margin: 0; color: #5F6664;">Every decision we make is guided by one simple principle: creating an environment where children feel safe, supported and able to grow. From the way our home is designed to the relationships we build each day, our focus is on providing consistent, high-quality care that helps children move forward with confidence.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: {{ approachCardCols }}; gap: 24px;">
+        <div style="background: #FCFBF9; border: 1px solid #E9E3DE; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <p style="font-family: 'Newsreader', serif; font-size: 22px; color: #E9AFC1; margin: 0 0 18px; font-weight: 500;">01</p>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Small by Design</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">A two-bed home where every child receives individual attention and meaningful support.</p>
+        </div>
+        <div style="background: #FCFBF9; border: 1px solid #E9E3DE; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <p style="font-family: 'Newsreader', serif; font-size: 22px; color: #E9AFC1; margin: 0 0 18px; font-weight: 500;">02</p>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Consistent Relationships</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">A stable team that values trust, reliability and genuine connection.</p>
+        </div>
+        <div style="background: #FCFBF9; border: 1px solid #E9E3DE; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <p style="font-family: 'Newsreader', serif; font-size: 22px; color: #E9AFC1; margin: 0 0 18px; font-weight: 500;">03</p>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Working in Partnership</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">Collaborating closely with local authorities, families and professionals.</p>
+        </div>
+        <div style="background: #FCFBF9; border: 1px solid #E9E3DE; padding: 36px 30px; transition: transform 0.4s ease, box-shadow 0.4s ease;" style-hover="transform:translateY(-4px);box-shadow:0 16px 32px rgba(47,52,55,0.06);">
+          <p style="font-family: 'Newsreader', serif; font-size: 22px; color: #E9AFC1; margin: 0 0 18px; font-weight: 500;">04</p>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Preparing for the Future</h3>
+          <p style="font-size: 14px; margin: 0; color: #5F6664;">Supporting education, independence and life skills while celebrating progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="professionals" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #FCFBF9;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }};">
+      <div style="max-width: 700px; margin: 0 auto 72px; text-align: center;">
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Referrals</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 3.6vw, 40px); color: #2F3437; margin: 0 0 28px; font-weight: 500; line-height: 1.3;">Making a referral</h2>
+        <p style="font-size: 16px; margin: 0 0 16px; color: #5F6664;">We understand that finding the right home is an important decision. Our team aims to make the referral process straightforward, transparent and collaborative, working closely with placing authorities to determine whether Willow Grove House is the right fit for a child.</p>
+        <p style="font-size: 16px; margin: 0; color: #5F6664;">If you would like to discuss a referral, we're always happy to have an initial conversation.</p>
+      </div>
+      <div style="position: relative; display: grid; grid-template-columns: {{ approachCardCols3 }}; gap: 40px; margin-bottom: 72px;">
+        <div style="position: absolute; top: 24px; left: 8%; right: 8%; height: 1px; background: #E9E3DE; display: {{ stepLineDisplay }};"></div>
+        <div style="text-align: center; position: relative;">
+          <span style="width: 48px; height: 48px; border-radius: 50%; background: #FCFBF9; border: 1.5px solid #FDA9C1; color: #2F3437; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-size: 18px; font-weight: 500; margin: 0 auto 24px; position: relative; z-index: 1;">1</span>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 19px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Initial Enquiry</h3>
+          <p style="font-size: 14.5px; margin: 0; color: #5F6664; max-width: 280px; margin-left: auto; margin-right: auto;">Get in touch to discuss the child's needs and ask any questions about our home.</p>
+        </div>
+        <div style="text-align: center; position: relative;">
+          <span style="width: 48px; height: 48px; border-radius: 50%; background: #FCFBF9; border: 1.5px solid #FDA9C1; color: #2F3437; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-size: 18px; font-weight: 500; margin: 0 auto 24px; position: relative; z-index: 1;">2</span>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 19px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Assessment</h3>
+          <p style="font-size: 14.5px; margin: 0; color: #5F6664; max-width: 280px; margin-left: auto; margin-right: auto;">We'll carefully review the referral information and work with you to determine whether we can meet the child's needs.</p>
+        </div>
+        <div style="text-align: center; position: relative;">
+          <span style="width: 48px; height: 48px; border-radius: 50%; background: #FCFBF9; border: 1.5px solid #FDA9C1; color: #2F3437; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-size: 18px; font-weight: 500; margin: 0 auto 24px; position: relative; z-index: 1;">3</span>
+          <h3 style="font-family: 'Newsreader', serif; font-size: 19px; color: #2F3437; margin: 0 0 10px; font-weight: 500;">Decision & Planning</h3>
+          <p style="font-size: 14.5px; margin: 0; color: #5F6664; max-width: 280px; margin-left: auto; margin-right: auto;">If the placement is appropriate, we'll work together to plan a smooth and well-supported transition into the home.</p>
+        </div>
+      </div>
+      <div style="background: #FBE9EE; padding: 56px 48px; text-align: center;">
+        <h3 style="font-family: 'Newsreader', serif; font-size: 24px; color: #2F3437; margin: 0 0 24px; font-weight: 500;">Ready to discuss a referral?</h3>
+        <a href="#contact" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 32px; border-radius: 14px; display: inline-block; margin-bottom: 24px; transition: background 0.3s ease, transform 0.3s ease;" style-hover="background:#f792af;transform:translateY(-1px);">Make a Referral</a>
+        <p style="margin: 0; font-size: 14px; color: #5F6664;">024 7000 0000 &nbsp;·&nbsp; referrals@blossomgrovecare.co.uk</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; max-width: 1280px; margin: 0 auto; padding: 150px 32px;">
+    <div style="max-width: 620px; margin: 0 auto 80px; text-align: center;">
+      <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Meet the Team</p>
+      <h2 style="font-family: 'Newsreader', serif; font-size: clamp(30px, 4vw, 42px); color: #2F3437; margin: 0 0 20px; font-weight: 500; line-height: 1.25;">The people behind every home</h2>
+      <p style="font-size: 16px; margin: 0; color: #5F6664;">Every home is led by an experienced, trained team — supported by specialists across care, education and therapeutic practice.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: {{ teamCols }}; gap: 32px;">
+      <div style="text-align: left;">
+        <div style="aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; margin-bottom: 20px; background: #FBE4EA; display: flex; align-items: center; justify-content: center; transition: transform 0.4s ease; position: relative;" style-hover="transform:scale(1.04);">
+          <div style="width: 34%; height: 34%; border-radius: 50%; background: #2F3437; opacity: 0.35; position: absolute; top: 22%;"></div>
+          <div style="width: 62%; height: 42%; border-radius: 50% 50% 0 0; background: #2F3437; opacity: 0.35; position: absolute; bottom: 14%;"></div>
+        </div>
+        <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 4px; font-weight: 500;">Atiqah Hussain</h3>
+        <p style="font-size: 13px; color: #C77792; margin: 0 0 2px; letter-spacing: 0.02em;">Registered Manager</p>
+        <p style="font-size: 13px; color: #A8ADAA; margin: 0 0 10px; letter-spacing: 0.02em;">Willow Grove House</p>
+        <p style="font-size: 14px; margin: 0; color: #5F6664;">Leads daily care and long-term planning for every child in the home.</p>
+      </div>
+      <div style="text-align: left;">
+        <div style="aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; margin-bottom: 20px; background: #E9EEE7; display: flex; align-items: center; justify-content: center; transition: transform 0.4s ease; position: relative;" style-hover="transform:scale(1.04);">
+          <div style="width: 34%; height: 34%; border-radius: 50%; background: #2F3437; opacity: 0.35; position: absolute; top: 22%;"></div>
+          <div style="width: 62%; height: 42%; border-radius: 50% 50% 0 0; background: #2F3437; opacity: 0.35; position: absolute; bottom: 14%;"></div>
+        </div>
+        <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 4px; font-weight: 500;">Nicola Forbes</h3>
+        <p style="font-size: 13px; color: #C77792; margin: 0 0 2px; letter-spacing: 0.02em;">Head of Care</p>
+        <p style="font-size: 13px; color: #A8ADAA; margin: 0 0 10px; letter-spacing: 0.02em;">Group-wide</p>
+        <p style="font-size: 14px; margin: 0; color: #5F6664;">Oversees standards, training and safeguarding across all homes.</p>
+      </div>
+      <div style="text-align: left;">
+        <div style="aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; margin-bottom: 20px; background: #F3D9D8; display: flex; align-items: center; justify-content: center; transition: transform 0.4s ease; position: relative;" style-hover="transform:scale(1.04);">
+          <div style="width: 34%; height: 34%; border-radius: 50%; background: #2F3437; opacity: 0.35; position: absolute; top: 22%;"></div>
+          <div style="width: 62%; height: 42%; border-radius: 50% 50% 0 0; background: #2F3437; opacity: 0.35; position: absolute; bottom: 14%;"></div>
+        </div>
+        <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 4px; font-weight: 500;">Therapeutic Lead</h3>
+        <p style="font-size: 13px; color: #A8ADAA; margin: 0 0 10px; letter-spacing: 0.02em;">Group-wide</p>
+        <p style="font-size: 14px; margin: 0; color: #5F6664;">Guides trauma-informed practice throughout each child's care.</p>
+      </div>
+      <div style="text-align: left;">
+        <div style="aspect-ratio: 1/1; border-radius: 50%; overflow: hidden; margin-bottom: 20px; background: #EFE9E4; display: flex; align-items: center; justify-content: center; transition: transform 0.4s ease; position: relative;" style-hover="transform:scale(1.04);">
+          <div style="width: 34%; height: 34%; border-radius: 50%; background: #2F3437; opacity: 0.35; position: absolute; top: 22%;"></div>
+          <div style="width: 62%; height: 42%; border-radius: 50% 50% 0 0; background: #2F3437; opacity: 0.35; position: absolute; bottom: 14%;"></div>
+        </div>
+        <h3 style="font-family: 'Newsreader', serif; font-size: 18px; color: #2F3437; margin: 0 0 4px; font-weight: 500;">Louise Smith</h3>
+        <p style="font-size: 13px; color: #C77792; margin: 0 0 2px; letter-spacing: 0.02em;">Education Coordinator</p>
+        <p style="font-size: 13px; color: #A8ADAA; margin: 0 0 10px; letter-spacing: 0.02em;">Group-wide</p>
+        <p style="font-size: 14px; margin: 0; color: #5F6664;">Works with schools to keep every child's learning on track.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="careers" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #F7F4F2;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPadLg }}; display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }}; align-items: center;">
+      <div>
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Careers</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 4vw, 40px); color: #2F3437; margin: 0 0 28px; font-weight: 500; line-height: 1.2;">Build a career that changes children's lives</h2>
+        <p style="font-size: 16px; margin: 0 0 28px; color: #5F6664; max-width: 480px;">We look for warm, resilient people to join our care teams — supported with genuine training, supervision and a team that shares your values.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #FCFBF9; border: 1px solid #E9E3DE; border-radius: 10px; padding: 14px 18px; max-width: 420px;">
+            <span style="font-size: 15px; color: #2F3437; font-weight: 500;">Senior Residential Support Worker</span>
+            <span style="font-size: 12px; color: #C77792; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0;">Hiring</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #FCFBF9; border: 1px solid #E9E3DE; border-radius: 10px; padding: 14px 18px; max-width: 420px;">
+            <span style="font-size: 15px; color: #2F3437; font-weight: 500;">Residential Support Worker</span>
+            <span style="font-size: 12px; color: #C77792; letter-spacing: 0.04em; text-transform: uppercase; flex-shrink: 0;">Hiring</span>
+          </div>
+        </div>
+        <a href="#contact" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; padding-bottom: 4px; border-bottom: 1px solid #2F3437; display: inline-block;" style-hover="border-bottom-color:#FDA9C1;color:#C77792;">Enquire About These Roles →</a>
+      </div>
+      <div style="aspect-ratio: 4/3; border-radius: 14px; overflow: hidden; position: relative; border: 1px solid #E9E3DE;">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop" alt="Care team together" style="width: 100%; height: 100%; object-fit: cover;" />
+        <span style="position: absolute; bottom: 16px; left: 16px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.85); padding: 4px 10px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #2F3437;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }}; display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }};">
+      <div>
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #FDA9C1; margin: 0 0 18px;">Contact</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 4vw, 40px); color: #FCFBF9; margin: 0 0 32px; font-weight: 500; line-height: 1.2;">Let's talk</h2>
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div>
+            <p style="font-size: 12px; color: #8A9290; margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.1em;">Phone</p>
+            <p style="font-size: 18px; color: #FCFBF9; margin: 0; font-family: 'Newsreader', serif;">024 7000 0000</p>
+          </div>
+          <div>
+            <p style="font-size: 12px; color: #8A9290; margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.1em;">Email</p>
+            <p style="font-size: 18px; color: #FCFBF9; margin: 0; font-family: 'Newsreader', serif;">info@blossomgrovecare.co.uk</p>
+          </div>
+          <div>
+            <p style="font-size: 12px; color: #8A9290; margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.1em;">Address</p>
+            <p style="font-size: 18px; color: #FCFBF9; margin: 0; font-family: 'Newsreader', serif;">Coventry, England</p>
+          </div>
+        </div>
+      </div>
+      <form style="display: flex; flex-direction: column; gap: 16px;" onSubmit="{{ handleSubmit }}">
+        <input type="text" placeholder="Your name" required="true" style="padding: 16px 18px; border-radius: 14px; border: 1px solid #4A5053; background: transparent; color: #FCFBF9; font-size: 15px; font-family: inherit;" />
+        <input type="email" placeholder="Email address" required="true" style="padding: 16px 18px; border-radius: 14px; border: 1px solid #4A5053; background: transparent; color: #FCFBF9; font-size: 15px; font-family: inherit;" />
+        <textarea placeholder="How can we help?" rows="4" style="padding: 16px 18px; border-radius: 14px; border: 1px solid #4A5053; background: transparent; color: #FCFBF9; font-size: 15px; font-family: inherit; resize: vertical;"></textarea>
+        <button type="submit" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 28px; border-radius: 14px; border: none; cursor: pointer; align-self: flex-start;" style-hover="background:#f792af;">{{ submitLabel }}</button>
+      </form>
+    </div>
+  </section>
+
+  <footer style="background: #2F3437; border-top: 1px solid #4A5053;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <p style="font-size: 13px; color: #8A9290; margin: 0;">© 2026 Blossom Grove Care. Registered in England & Wales.</p>
+      <p style="font-size: 13px; color: #8A9290; margin: 0;">Ofsted registration: pending</p>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { submitted: false, scrolled: false, menuOpen: false, isMobile: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const scrolled = window.scrollY > 80;
+      if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    this._onResize = () => {
+      const isMobile = window.innerWidth < 860;
+      if (isMobile !== this.state.isMobile) this.setState({ isMobile });
+    };
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+
+    const els = document.querySelectorAll('[data-reveal]');
+    const reveal = (el) => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; };
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0 || entry.isIntersecting) {
+          reveal(entry.target);
+          this._observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+    els.forEach((el) => this._observer.observe(el));
+    this._fallback = setTimeout(() => els.forEach(reveal), 2500);
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._observer) this._observer.disconnect();
+    if (this._fallback) clearTimeout(this._fallback);
+  }
+
+  renderVals() {
+    const scrolled = this.state.scrolled;
+    const m = this.state.isMobile;
+    return {
+      submitLabel: this.state.submitted ? "Thank you — we'll be in touch" : "Send message",
+      handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+      headerBg: '#FCFBF9',
+      headerShadow: scrolled ? '0 1px 0 rgba(47,52,55,0.08)' : 'none',
+      headerPad: scrolled ? '14px 20px' : '18px 20px',
+      navColor: '#2F3437',
+      logoSize: m ? '30px' : '38px',
+      logoFontSize: m ? '15px' : '18px',
+      navDisplayDesktop: m ? 'none' : 'flex',
+      navDisplayMobile: m ? 'flex' : 'none',
+      heroCols: m ? '1fr' : '1fr 1fr',
+      heroMinHeight: m ? 'auto' : '100vh',
+      heroContentOrder: m ? '2' : '1',
+      heroImgOrder: m ? '1' : '2',
+      heroContentPad: m ? '40px 24px 56px' : '80px 64px 64px',
+      heroImgHeight: m ? '52vh' : '100%',
+      willowCardCols: m ? '1fr' : 'repeat(3, 1fr)',
+      approachCardCols: m ? '1fr' : 'repeat(4, 1fr)',
+      approachCardCols3: m ? '1fr' : 'repeat(3, 1fr)',
+      stepLineDisplay: m ? 'none' : 'block',
+      overlayDisplay: this.state.menuOpen ? 'flex' : 'none',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      whyOuterCols: m ? '1fr' : '0.85fr 1.5fr',
+      cols2: m ? '1fr' : '1fr 1fr',
+      gapLg: m ? '48px' : '96px',
+      sectionPad: m ? '60px 20px' : '84px 32px',
+      sectionPadLg: m ? '60px 20px' : '76px 32px',
+      teamCols: m ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)'
+    };
+  }
+}
+</script>
+</body>
+</html>
