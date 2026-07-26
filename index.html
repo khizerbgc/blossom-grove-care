@@ -81,8 +81,14 @@
       </div>
     </div>
     <div style="order: {{ heroImgOrder }}; position: relative; overflow: hidden; height: {{ heroImgHeight }};">
-      <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1400&auto=format&fit=crop" alt="Bright, homely living room" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.01); transition: transform 6s ease;" style-hover="transform:scale(1.06);" />
-      <span style="position: absolute; bottom: 20px; left: 20px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.88); padding: 5px 12px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+      <img src="uploads/DSC_9104.jpg" alt="Bright, homely home at Willow Grove House" style="{{ heroSlide0Style }}" />
+      <img src="uploads/DSC_9109.jpg" alt="Bright, homely home at Willow Grove House" style="{{ heroSlide1Style }}" />
+      <img src="uploads/DSC_9114.jpg" alt="Bright, homely home at Willow Grove House" style="{{ heroSlide2Style }}" />
+      <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 8px; z-index: 2;">
+        <span style="{{ heroDot0Style }}"></span>
+        <span style="{{ heroDot1Style }}"></span>
+        <span style="{{ heroDot2Style }}"></span>
+      </div>
     </div>
   </section>
 
@@ -122,8 +128,14 @@
     <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPadLg }};">
       <div style="display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }}; align-items: center; margin-bottom: 64px;">
         <div style="aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative; border: 1px solid #E9E3DE;">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" alt="Willow Grove House interior" style="width: 100%; height: 100%; object-fit: cover; transition: transform 6s ease;" style-hover="transform:scale(1.05);" />
-          <span style="position: absolute; bottom: 16px; left: 16px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.85); padding: 4px 10px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+          <img src="uploads/DSC_9214-e89a7200.jpg" alt="Willow Grove House interior" style="{{ willowSlide0Style }}" />
+          <img src="uploads/DSC_9159-d882b6c2.jpg" alt="Willow Grove House interior" style="{{ willowSlide1Style }}" />
+          <img src="uploads/DSC_9170-6b84d849.jpg" alt="Willow Grove House interior" style="{{ willowSlide2Style }}" />
+          <div style="position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 2;">
+            <span style="{{ willowDot0Style }}"></span>
+            <span style="{{ willowDot1Style }}"></span>
+            <span style="{{ willowDot2Style }}"></span>
+          </div>
         </div>
         <div>
           <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Our Homes</p>
@@ -243,10 +255,15 @@
           <p style="font-size: 14.5px; margin: 0; color: #5F6664; max-width: 280px; margin-left: auto; margin-right: auto;">If the placement is appropriate, we'll work together to plan a smooth and well-supported transition into the home.</p>
         </div>
       </div>
-      <div style="background: #FBE9EE; padding: 56px 48px; text-align: center;">
-        <h3 style="font-family: 'Newsreader', serif; font-size: 24px; color: #2F3437; margin: 0 0 24px; font-weight: 500;">Ready to discuss a referral?</h3>
-        <a href="#contact" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 32px; border-radius: 14px; display: inline-block; margin-bottom: 24px; transition: background 0.3s ease, transform 0.3s ease;" style-hover="background:#f792af;transform:translateY(-1px);">Make a Referral</a>
-        <p style="margin: 0; font-size: 14px; color: #5F6664;">024 7000 0000 &nbsp;·&nbsp; referrals@blossomgrovecare.co.uk</p>
+      <div style="background: #FBE9EE; display: grid; grid-template-columns: {{ cols2 }}; align-items: center;">
+        <div style="padding: 56px 48px; text-align: center;">
+          <h3 style="font-family: 'Newsreader', serif; font-size: 24px; color: #2F3437; margin: 0 0 24px; font-weight: 500;">Ready to discuss a referral?</h3>
+          <a href="#contact" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 32px; border-radius: 14px; display: inline-block; margin-bottom: 24px; transition: background 0.3s ease, transform 0.3s ease;" style-hover="background:#f792af;transform:translateY(-1px);">Make a Referral</a>
+          <p style="margin: 0; font-size: 14px; color: #5F6664;">024 7000 0000 &nbsp;·&nbsp; referrals@blossomgrovecare.co.uk</p>
+        </div>
+        <div style="aspect-ratio: 4/3; overflow: hidden; align-self: stretch;">
+          <img src="uploads/DSC_9204-836a3ba8.jpg" alt="A well-loved soft toy waiting on the sofa" style="width: 100%; height: 100%; object-fit: cover;" />
+        </div>
       </div>
     </div>
   </section>
@@ -366,9 +383,18 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { submitted: false, scrolled: false, menuOpen: false, isMobile: false };
+  state = { submitted: false, scrolled: false, menuOpen: false, isMobile: false, heroIndex: 0, willowIndex: 0 };
+  heroImages = ['uploads/DSC_9104.jpg', 'uploads/DSC_9109.jpg', 'uploads/DSC_9114.jpg'];
+  willowImages = ['uploads/DSC_9214-e89a7200.jpg', 'uploads/DSC_9159-d882b6c2.jpg', 'uploads/DSC_9170-6b84d849.jpg'];
 
   componentDidMount() {
+    this._heroTimer = setInterval(() => {
+      this.setState(s => ({ heroIndex: (s.heroIndex + 1) % this.heroImages.length }));
+    }, 5000);
+    this._willowTimer = setInterval(() => {
+      this.setState(s => ({ willowIndex: (s.willowIndex + 1) % this.willowImages.length }));
+    }, 5000);
+
     this._onScroll = () => {
       const scrolled = window.scrollY > 80;
       if (scrolled !== this.state.scrolled) this.setState({ scrolled });
@@ -397,6 +423,8 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
+    if (this._heroTimer) clearInterval(this._heroTimer);
+    if (this._willowTimer) clearInterval(this._willowTimer);
     if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
     if (this._onResize) window.removeEventListener('resize', this._onResize);
     if (this._observer) this._observer.disconnect();
@@ -411,6 +439,18 @@ class Component extends DCLogic {
       handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
       headerBg: '#FCFBF9',
       headerShadow: scrolled ? '0 1px 0 rgba(47,52,55,0.08)' : 'none',
+      heroSlide0Style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;opacity:${this.state.heroIndex === 0 ? 1 : 0};`,
+      heroSlide1Style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;opacity:${this.state.heroIndex === 1 ? 1 : 0};`,
+      heroSlide2Style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;opacity:${this.state.heroIndex === 2 ? 1 : 0};`,
+      heroDot0Style: `width:6px;height:6px;border-radius:50%;background:${this.state.heroIndex === 0 ? '#FDA9C1' : 'rgba(252,251,249,0.6)'};transition:background 0.3s ease;`,
+      heroDot1Style: `width:6px;height:6px;border-radius:50%;background:${this.state.heroIndex === 1 ? '#FDA9C1' : 'rgba(252,251,249,0.6)'};transition:background 0.3s ease;`,
+      heroDot2Style: `width:6px;height:6px;border-radius:50%;background:${this.state.heroIndex === 2 ? '#FDA9C1' : 'rgba(252,251,249,0.6)'};transition:background 0.3s ease;`,
+      willowSlide0Style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;opacity:${this.state.willowIndex === 0 ? 1 : 0};`,
+      willowSlide1Style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;opacity:${this.state.willowIndex === 1 ? 1 : 0};`,
+      willowSlide2Style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;opacity:${this.state.willowIndex === 2 ? 1 : 0};`,
+      willowDot0Style: `width:6px;height:6px;border-radius:50%;background:${this.state.willowIndex === 0 ? '#FDA9C1' : 'rgba(47,52,55,0.25)'};transition:background 0.3s ease;`,
+      willowDot1Style: `width:6px;height:6px;border-radius:50%;background:${this.state.willowIndex === 1 ? '#FDA9C1' : 'rgba(47,52,55,0.25)'};transition:background 0.3s ease;`,
+      willowDot2Style: `width:6px;height:6px;border-radius:50%;background:${this.state.willowIndex === 2 ? '#FDA9C1' : 'rgba(47,52,55,0.25)'};transition:background 0.3s ease;`,
       headerPad: scrolled ? '14px 20px' : '18px 20px',
       navColor: '#2F3437',
       logoSize: m ? '30px' : '38px',
