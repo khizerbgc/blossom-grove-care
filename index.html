@@ -259,7 +259,7 @@
         <div style="padding: 56px 48px; text-align: center;">
           <h3 style="font-family: 'Newsreader', serif; font-size: 24px; color: #2F3437; margin: 0 0 24px; font-weight: 500;">Ready to discuss a referral?</h3>
           <a href="#contact" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 32px; border-radius: 14px; display: inline-block; margin-bottom: 24px; transition: background 0.3s ease, transform 0.3s ease;" style-hover="background:#f792af;transform:translateY(-1px);">Make a Referral</a>
-          <p style="margin: 0; font-size: 14px; color: #5F6664;">024 7000 0000 &nbsp;·&nbsp; referrals@blossomgrovecare.co.uk</p>
+          <p style="margin: 0; font-size: 14px; color: #5F6664;">07491 085061 &nbsp;·&nbsp; referrals@blossomgrovecare.co.uk</p>
         </div>
         <div style="aspect-ratio: 4/3; overflow: hidden; align-self: stretch;">
           <img src="uploads/DSC_9204-836a3ba8.jpg" alt="A well-loved soft toy waiting on the sofa" style="width: 100%; height: 100%; object-fit: cover;">
@@ -349,7 +349,7 @@
         <div style="display: flex; flex-direction: column; gap: 24px;">
           <div>
             <p style="font-size: 12px; color: #8A9290; margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.1em;">Phone</p>
-            <p style="font-size: 18px; color: #FCFBF9; margin: 0; font-family: 'Newsreader', serif;">024 7000 0000</p>
+            <p style="font-size: 18px; color: #FCFBF9; margin: 0; font-family: 'Newsreader', serif;">07491 085061</p>
           </div>
           <div>
             <p style="font-size: 12px; color: #8A9290; margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.1em;">Email</p>
@@ -361,12 +361,17 @@
           </div>
         </div>
       </div>
-      <form style="display: flex; flex-direction: column; gap: 16px;" onSubmit="{{ handleSubmit }}">
-        <input type="text" placeholder="Your name" required="true" style="padding: 16px 18px; border-radius: 14px; border: 1px solid #4A5053; background: transparent; color: #FCFBF9; font-size: 15px; font-family: inherit;">
-        <input type="email" placeholder="Email address" required="true" style="padding: 16px 18px; border-radius: 14px; border: 1px solid #4A5053; background: transparent; color: #FCFBF9; font-size: 15px; font-family: inherit;">
-        <textarea placeholder="How can we help?" rows="4" style="padding: 16px 18px; border-radius: 14px; border: 1px solid #4A5053; background: transparent; color: #FCFBF9; font-size: 15px; font-family: inherit; resize: vertical;"></textarea>
-        <button type="submit" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 28px; border-radius: 14px; border: none; cursor: pointer; align-self: flex-start;" style-hover="background:#f792af;">{{ submitLabel }}</button>
-      </form>
+      <div style="background: rgba(252,251,249,0.04); border: 1px solid #4A5053; border-radius: 16px; padding: 40px 36px; display: flex; flex-direction: column; gap: 28px; justify-content: center;">
+        <div>
+          <p style="font-family: 'Newsreader', serif; font-size: 21px; color: #FCFBF9; margin: 0 0 10px; font-weight: 500;">Prefer to talk it through?</p>
+          <p style="font-size: 15px; color: #A8ADAA; margin: 0; line-height: 1.7;">Call or email us directly — we're happy to answer questions about a placement, a referral or joining the team.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <a href="tel:07491085061" style="font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 28px; border-radius: 14px; text-align: center; transition: background 0.3s ease;" style-hover="background:#f792af;">Call 07491 085061</a>
+          <a href="mailto:info@blossomgrovecare.co.uk" style="font-size: 15px; font-weight: 500; letter-spacing: 0.02em; color: #FCFBF9; border: 1px solid #4A5053; padding: 16px 28px; border-radius: 14px; text-align: center; transition: border-color 0.3s ease;" style-hover="border-color:#FDA9C1;">Email info@blossomgrovecare.co.uk</a>
+        </div>
+        <p style="font-size: 13px; color: #8A9290; margin: 0;">Monday–Friday, 9am–5pm</p>
+      </div>
     </div>
   </section>
 
@@ -382,7 +387,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { submitted: false, scrolled: false, menuOpen: false, isMobile: false, heroIndex: 0, willowIndex: 0 };
+  state = { scrolled: false, menuOpen: false, isMobile: false, heroIndex: 0, willowIndex: 0 };
   heroImages = ['uploads/DSC_9104.jpg', 'uploads/DSC_9109.jpg', 'uploads/DSC_9114.jpg'];
   willowImages = ['uploads/DSC_9214-e89a7200.jpg', 'uploads/DSC_9159-d882b6c2.jpg', 'uploads/DSC_9170-6b84d849.jpg'];
 
@@ -434,8 +439,6 @@ class Component extends DCLogic {
     const scrolled = this.state.scrolled;
     const m = this.state.isMobile;
     return {
-      submitLabel: this.state.submitted ? "Thank you — we'll be in touch" : "Send message",
-      handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
       headerBg: '#FCFBF9',
       headerShadow: scrolled ? '0 1px 0 rgba(47,52,55,0.08)' : 'none',
       heroSlide0Style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;opacity:${this.state.heroIndex === 0 ? 1 : 0};`,
