@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" data-bg-color="#FCFBF9">
+<rect width="200" height="200" fill="#FCFBF9"/>
+<circle cx="100" cy="100" r="46" fill="none" stroke="#FDA9C1" stroke-width="3"/>
+<text x="100" y="112" font-family="Georgia, serif" font-size="44" fill="#2F3437" text-anchor="middle">B</text>
+</svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #FCFBF9; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: #FDA9C1; }
+  @keyframes heroFade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<div style="font-family: 'Public Sans', sans-serif; color: #5F6664; background: #FCFBF9; line-height: 1.7; -webkit-font-smoothing: antialiased;">
+
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 30; background: {{ headerBg }}; box-shadow: {{ headerShadow }};">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ headerPad }}; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #2F3437;">
+      <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: inherit; min-width: 0; flex-shrink: 0;">
+        <img src="assets/blossom-grove-logo.png" alt="Blossom Grove Care" style="height: {{ logoSize }}; width: {{ logoSize }}; object-fit: contain; flex-shrink: 0;" />
+        <span style="font-family: 'Newsreader', serif; font-size: {{ logoFontSize }}; font-weight: 500; letter-spacing: 0.01em; white-space: nowrap;">Blossom Grove Care</span>
+      </a>
+      <nav style="display: {{ navDisplayDesktop }}; align-items: center; gap: 30px;">
+        <a href="index.html" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Home</a>
+        <a href="index.html#willow" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Our Homes</a>
+        <a href="#services" style="font-size: 13px; font-weight: 600; color: #C77792; padding-bottom: 3px; border-bottom: 1px solid #FDA9C1;">Services</a>
+        <a href="index.html#professionals" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; padding-bottom: 3px; border-bottom: 1px solid transparent;" style-hover="border-bottom-color: #FDA9C1;">Referrals</a>
+        <a href="index.html#contact" style="font-size: 13px; font-weight: 600; color: #2F3437; background: #FDA9C1; padding: 10px 24px; border-radius: 14px; letter-spacing: 0.03em;" style-hover="background:#f792af;">Contact</a>
+      </nav>
+      <div style="display: {{ navDisplayMobile }}; align-items: center; gap: 10px; flex-shrink: 0;">
+        <a href="index.html#contact" style="font-size: 12px; font-weight: 600; color: #2F3437; background: #FDA9C1; padding: 8px 14px; border-radius: 14px; letter-spacing: 0.02em; white-space: nowrap;">Contact</a>
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 14px; border: 1px solid currentColor; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; color: inherit;">
+          <span style="width: 14px; height: 1px; background: currentColor;"></span>
+          <span style="width: 14px; height: 1px; background: currentColor;"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div style="display: {{ overlayDisplay }}; position: fixed; inset: 0; z-index: 40; background: #FCFBF9; flex-direction: column; align-items: center; justify-content: center; gap: 28px;">
+    <a href="index.html" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Home</a>
+    <a href="index.html#willow" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Our Homes</a>
+    <a href="#services" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #C77792;">Services</a>
+    <a href="index.html#professionals" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Referrals</a>
+    <a href="index.html#contact" onClick="{{ closeMenu }}" style="font-family: 'Newsreader', serif; font-size: 26px; color: #2F3437;">Contact</a>
+    <button onClick="{{ closeMenu }}" style="position: absolute; top: 26px; right: 32px; width: 38px; height: 38px; border: 1px solid #E9E3DE; background: transparent; border-radius: 14px; font-size: 18px; color: #2F3437; cursor: pointer;">×</button>
+  </div>
+
+  <section id="services" style="background: #FCFBF9; display: grid; grid-template-columns: {{ heroCols }}; min-height: {{ heroMinHeight }}; align-items: stretch;">
+    <div style="order: {{ heroContentOrder }}; display: flex; align-items: center; padding: {{ heroContentPad }};">
+      <div style="max-width: 460px; width: 100%;">
+        <p style="font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #5F6664; margin: 0 0 24px; display: flex; align-items: center; gap: 10px; animation: heroFade 0.8s ease 0.05s both;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; display: inline-block;"></span>What We Offer</p>
+        <h1 style="font-family: 'Newsreader', serif; font-size: clamp(36px, 5vw, 52px); line-height: 1.18; font-weight: 500; color: #2F3437; margin: 0 0 26px; letter-spacing: -0.01em; animation: heroFade 0.9s ease 0.15s both;">Our Services</h1>
+        <p style="font-size: 17px; line-height: 1.75; margin: 0; color: #5F6664; font-weight: 300; animation: heroFade 0.9s ease 0.25s both;">Every child is unique, which is why our care is tailored to their individual needs. Through relationship-led care, therapeutic thinking and close partnership with professionals, we provide the support children need to feel safe, develop confidence and move towards positive futures.</p>
+      </div>
+    </div>
+    <div style="order: {{ heroImgOrder }}; position: relative; overflow: hidden; height: {{ heroImgHeight }};">
+      <img src="uploads/DSC_9107.jpg" alt="Warm, bright home interior" style="width: 100%; height: 100%; object-fit: cover;" />
+      <span style="position: absolute; bottom: 20px; left: 20px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.88); padding: 5px 12px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+    </div>
+  </section>
+
+  <section data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #FCFBF9;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }}; display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }}; align-items: center;">
+      <div style="aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative; border: 1px solid #E9E3DE;">
+        <img src="uploads/DSC_9114.jpg" alt="Family-style residential home" style="width: 100%; height: 100%; object-fit: cover;" />
+        <span style="position: absolute; bottom: 16px; left: 16px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.85); padding: 4px 10px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+      </div>
+      <div>
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Residential Children's Care</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(26px, 3.4vw, 36px); color: #2F3437; margin: 0 0 24px; font-weight: 500; line-height: 1.3;">A warm, family-style home</h2>
+        <p style="font-size: 16px; margin: 0 0 28px; color: #5F6664;">We provide a warm, family-style home where children experience consistency, security and meaningful relationships. Our focus is on creating an environment where every child feels respected, supported and able to thrive.</p>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Safe, nurturing home environment</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Consistent, trusted relationships</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Individualised care and support</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Stability and routine</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Opportunities to grow in confidence and independence</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #F7F4F2;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }}; display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }}; align-items: center;">
+      <div style="order: {{ altContentOrder }};">
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Therapeutic Care</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(26px, 3.4vw, 36px); color: #2F3437; margin: 0 0 24px; font-weight: 500; line-height: 1.3;">Understanding each child's story</h2>
+        <p style="font-size: 16px; margin: 0 0 28px; color: #5F6664;">Our approach is informed by therapeutic principles that help children understand their experiences, develop emotional resilience and build healthy relationships. Every child receives care that is tailored to their individual needs.</p>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Trauma-informed approach</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Relationship-led practice</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Emotional wellbeing</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Behaviour support</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Positive outcomes through consistent care</span></div>
+        </div>
+      </div>
+      <div style="order: {{ altImgOrder }}; aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative; border: 1px solid #E9E3DE;">
+        <img src="uploads/DSC_9170.jpg" alt="Calm, quiet space" style="width: 100%; height: 100%; object-fit: cover;" />
+        <span style="position: absolute; bottom: 16px; left: 16px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.85); padding: 4px 10px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #2F3437; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #FDA9C1, #A8B8A5);"></div>
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPadLg }};">
+      <div style="max-width: 700px; margin: 0 auto 56px; text-align: center;">
+        <p style="font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #FDA9C1; margin: 0 0 18px;">Featured · Specialist Support</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 3.8vw, 42px); color: #FCFBF9; margin: 0 0 28px; font-weight: 500; line-height: 1.3;">Psychology &amp; Clinical Support</h2>
+        <p style="font-size: 16px; margin: 0; color: #C7CBC9;">Children can benefit from enhanced psychological support, delivered according to individual needs and local authority requirements. This specialist input strengthens the care we provide and ensures our approach remains reflective, evidence-informed and responsive.</p>
+      </div>
+      <div style="background: rgba(252,251,249,0.04); border: 1px solid rgba(252,251,249,0.14); border-radius: 16px; padding: 48px; display: grid; grid-template-columns: {{ psychCols }}; gap: 40px 56px;">
+        <div>
+          <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #FDA9C1; margin: 0 0 20px;">Assessment &amp; Training</p>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">Initial / baseline assessment of each young person</span></div>
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">Annual trauma-informed care training</span></div>
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">Monthly bespoke half-day training tailored to each child's needs and behaviours</span></div>
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">ASD and specialist assessments where required by the placing authority</span></div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #FDA9C1; margin: 0 0 20px;">Ongoing Support</p>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">Monthly staff consultation and clinical supervision</span></div>
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">Therapeutic care plan and behaviour support oversight</span></div>
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">Weekly or fortnightly therapy, tailored to the individual child</span></div>
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">Quarterly review meetings</span></div>
+            <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0; margin-top: 8px;"></span><span style="font-size: 15px; color: #E5E8E6;">End of placement review and recommendations</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #FCFBF9;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }}; display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }}; align-items: center;">
+      <div style="aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative; border: 1px solid #E9E3DE;">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop" alt="Care team consultation" style="width: 100%; height: 100%; object-fit: cover;" />
+        <span style="position: absolute; bottom: 16px; left: 16px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.85); padding: 4px 10px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+      </div>
+      <div>
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Supporting Our Team</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(26px, 3.4vw, 36px); color: #2F3437; margin: 0 0 24px; font-weight: 500; line-height: 1.3;">Confident, well-supported practitioners</h2>
+        <p style="font-size: 16px; margin: 0 0 28px; color: #5F6664;">Outstanding care begins with well-supported professionals. We invest in our team through regular consultation, reflective supervision and ongoing professional development, ensuring children benefit from confident, knowledgeable and reflective practitioners.</p>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Monthly clinical consultation</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Clinical supervision</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Annual trauma-informed care training</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Bespoke behavioural guidance</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #FDA9C1; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Reflective practice within team meetings</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #F7F4F2;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: {{ sectionPad }}; display: grid; grid-template-columns: {{ cols2 }}; gap: {{ gapLg }}; align-items: center;">
+      <div style="order: {{ altContentOrder }};">
+        <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Assessment &amp; Care Planning</p>
+        <h2 style="font-family: 'Newsreader', serif; font-size: clamp(26px, 3.4vw, 36px); color: #2F3437; margin: 0 0 24px; font-weight: 500; line-height: 1.3;">Care that evolves with each child</h2>
+        <p style="font-size: 16px; margin: 0 0 28px; color: #5F6664;">Every placement begins with a comprehensive assessment to understand each child's strengths, needs and aspirations. This enables personalised care planning that evolves alongside the child.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px;">
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Comprehensive initial assessments</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Therapeutic care planning</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Behaviour support planning</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Regular review meetings</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Observation of children's progress</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Observation of staff practice</span></div>
+          <div style="display: flex; align-items: baseline; gap: 12px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A8B8A5; flex-shrink: 0;"></span><span style="font-size: 15px; color: #2F3437;">Continuous review of care strategies</span></div>
+        </div>
+      </div>
+      <div style="order: {{ altImgOrder }}; aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; position: relative; border: 1px solid #E9E3DE;">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop" alt="Care planning" style="width: 100%; height: 100%; object-fit: cover;" />
+        <span style="position: absolute; bottom: 16px; left: 16px; font-family: monospace; font-size: 11px; background: rgba(252,251,249,0.85); padding: 4px 10px; border-radius: 100px; color: #5F6664;">stock photo — temporary</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="true" style="opacity: 0; transform: translateY(28px); transition: opacity 0.9s ease, transform 0.9s ease; background: #FCFBF9;">
+    <div style="max-width: 900px; margin: 0 auto; padding: {{ sectionPad }}; text-align: center;">
+      <p style="font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #C77792; margin: 0 0 18px;">Preparing for Positive Futures</p>
+      <h2 style="font-family: 'Newsreader', serif; font-size: clamp(28px, 3.6vw, 40px); color: #2F3437; margin: 0 0 28px; font-weight: 500; line-height: 1.3;">Life beyond the home</h2>
+      <p style="font-size: 16px; margin: 0 0 48px; color: #5F6664;">We believe residential care should prepare children for life beyond the home. Through education, life skills, positive experiences and supportive relationships, we help children develop confidence, resilience and independence.</p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
+        <span style="font-size: 14px; color: #2F3437; border: 1px solid #E9E3DE; border-radius: 100px; padding: 12px 22px; transition: border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:#FDA9C1;background:#F7F4F2;">Education and achievement</span>
+        <span style="font-size: 14px; color: #2F3437; border: 1px solid #E9E3DE; border-radius: 100px; padding: 12px 22px; transition: border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:#FDA9C1;background:#F7F4F2;">Emotional wellbeing</span>
+        <span style="font-size: 14px; color: #2F3437; border: 1px solid #E9E3DE; border-radius: 100px; padding: 12px 22px; transition: border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:#FDA9C1;background:#F7F4F2;">Life skills</span>
+        <span style="font-size: 14px; color: #2F3437; border: 1px solid #E9E3DE; border-radius: 100px; padding: 12px 22px; transition: border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:#FDA9C1;background:#F7F4F2;">Independence</span>
+        <span style="font-size: 14px; color: #2F3437; border: 1px solid #E9E3DE; border-radius: 100px; padding: 12px 22px; transition: border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:#FDA9C1;background:#F7F4F2;">Positive activities</span>
+        <span style="font-size: 14px; color: #2F3437; border: 1px solid #E9E3DE; border-radius: 100px; padding: 12px 22px; transition: border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:#FDA9C1;background:#F7F4F2;">Building confidence</span>
+        <span style="font-size: 14px; color: #2F3437; border: 1px solid #E9E3DE; border-radius: 100px; padding: 12px 22px; transition: border-color 0.3s ease, background 0.3s ease;" style-hover="border-color:#FDA9C1;background:#F7F4F2;">Preparing for adulthood</span>
+      </div>
+      <div style="margin-top: 56px;">
+        <a href="index.html#contact" style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #2F3437; background: #FDA9C1; padding: 16px 32px; border-radius: 14px; display: inline-block; transition: background 0.3s ease, transform 0.3s ease;" style-hover="background:#f792af;transform:translateY(-1px);">Discuss a Referral</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #2F3437; border-top: 1px solid #4A5053;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <p style="font-size: 13px; color: #8A9290; margin: 0;">© 2026 Blossom Grove Care. Registered in England &amp; Wales.</p>
+      <p style="font-size: 13px; color: #8A9290; margin: 0;">Ofsted registration: pending</p>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { scrolled: false, menuOpen: false, isMobile: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const scrolled = window.scrollY > 80;
+      if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    this._onResize = () => {
+      const isMobile = window.innerWidth < 860;
+      if (isMobile !== this.state.isMobile) this.setState({ isMobile });
+    };
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+
+    const els = document.querySelectorAll('[data-reveal]');
+    const reveal = (el) => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; };
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio > 0 || entry.isIntersecting) {
+          reveal(entry.target);
+          this._observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+    els.forEach((el) => this._observer.observe(el));
+    this._fallback = setTimeout(() => els.forEach(reveal), 2500);
+  }
+
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._observer) this._observer.disconnect();
+    if (this._fallback) clearTimeout(this._fallback);
+  }
+
+  renderVals() {
+    const scrolled = this.state.scrolled;
+    const m = this.state.isMobile;
+    return {
+      headerBg: '#FCFBF9',
+      headerShadow: scrolled ? '0 1px 0 rgba(47,52,55,0.08)' : 'none',
+      headerPad: scrolled ? '14px 20px' : '18px 20px',
+      logoSize: m ? '30px' : '38px',
+      logoFontSize: m ? '15px' : '18px',
+      navDisplayDesktop: m ? 'none' : 'flex',
+      navDisplayMobile: m ? 'flex' : 'none',
+      overlayDisplay: this.state.menuOpen ? 'flex' : 'none',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      heroCols: m ? '1fr' : '1fr 1fr',
+      heroMinHeight: m ? 'auto' : '86vh',
+      heroContentPad: m ? '104px 24px 56px' : '80px 64px 64px',
+      heroImgHeight: m ? '52vh' : '100%',
+      heroContentOrder: m ? '2' : '1',
+      heroImgOrder: m ? '1' : '2',
+      cols2: m ? '1fr' : '1fr 1fr',
+      gapLg: m ? '48px' : '96px',
+      sectionPad: m ? '60px 20px' : '84px 32px',
+      sectionPadLg: m ? '60px 20px' : '76px 32px',
+      altImgOrder: m ? '1' : '2',
+      altContentOrder: m ? '2' : '1',
+      psychCols: m ? '1fr' : 'repeat(2, 1fr)'
+    };
+  }
+}
+</script>
+</body>
+</html>
