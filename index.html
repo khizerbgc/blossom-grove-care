@@ -36,7 +36,7 @@
         <img src="assets/blossom-grove-logo.png" alt="Blossom Grove Care" style="height: {{ logoSize }}; width: {{ logoSize }}; object-fit: contain; flex-shrink: 0;">
         <span style="font-family: 'Newsreader', serif; font-size: {{ logoFontSize }}; font-weight: 500; letter-spacing: 0.01em; color: inherit; white-space: nowrap;">Blossom Grove Care</span>
       </a>
-      <nav style="display: {{ navDisplayDesktop }}; align-items: center; gap: 22px; flex-shrink: 0;">
+      <nav style="{{ navStyle }}">
         <a href="#why" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent; white-space: nowrap;" style-hover="border-bottom-color: #FDA9C1;">Why Us</a>
         <a href="#willow" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent; white-space: nowrap;" style-hover="border-bottom-color: #FDA9C1;">Our Homes</a>
         <a href="#approach" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: inherit; padding-bottom: 3px; border-bottom: 1px solid transparent; white-space: nowrap;" style-hover="border-bottom-color: #FDA9C1;">Our Approach</a>
@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <div style="order: {{ heroImgOrder }}; position: relative; overflow: hidden; height: {{ heroImgHeight }};">
+    <div id="hero-image-col" style="order: {{ heroImgOrder }}; position: relative; overflow: hidden; height: {{ heroImgHeight }};">
       <img src="uploads/DSC_9104.jpg" alt="Bright, homely home at Willow Grove House" style="{{ heroSlide0Style }}">
       <img src="uploads/DSC_9109.jpg" alt="Bright, homely home at Willow Grove House" style="{{ heroSlide1Style }}">
       <img src="uploads/DSC_9114.jpg" alt="Bright, homely home at Willow Grove House" style="{{ heroSlide2Style }}">
@@ -387,7 +387,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { scrolled: false, menuOpen: false, isMobile: false, heroIndex: 0, willowIndex: 0 };
+  state = { scrolled: false, menuOpen: false, isMobile: false, heroIndex: 0, willowIndex: 0, navCenter: null };
   heroImages = ['uploads/DSC_9104.jpg', 'uploads/DSC_9109.jpg', 'uploads/DSC_9114.jpg'];
   willowImages = ['uploads/DSC_9214-e89a7200.jpg', 'uploads/DSC_9159-d882b6c2.jpg', 'uploads/DSC_9170-6b84d849.jpg'];
 
@@ -408,6 +408,15 @@ class Component extends DCLogic {
     this._onResize = () => {
       const isMobile = window.innerWidth < 860;
       if (isMobile !== this.state.isMobile) this.setState({ isMobile });
+      this._measureHeroNav();
+    };
+    this._measureHeroNav = () => {
+      const el = document.getElementById('hero-image-col');
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        const center = Math.round(rect.left + rect.width / 2);
+        if (center !== this.state.navCenter) this.setState({ navCenter: center });
+      }
     };
     this._onResize();
     window.addEventListener('resize', this._onResize);
@@ -432,6 +441,7 @@ class Component extends DCLogic {
     if (this._willowTimer) clearInterval(this._willowTimer);
     if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
     if (this._onResize) window.removeEventListener('resize', this._onResize);
+    if (this._measureTimeout) clearTimeout(this._measureTimeout);
     if (this._observer) this._observer.disconnect();
     if (this._fallback) clearTimeout(this._fallback);
   }
@@ -459,6 +469,11 @@ class Component extends DCLogic {
       logoSize: m ? '30px' : '38px',
       logoFontSize: m ? '15px' : '18px',
       navDisplayDesktop: m ? 'none' : 'flex',
+      navStyle: m
+        ? 'display:none;'
+        : (this.state.navCenter != null
+            ? `position:absolute;left:${this.state.navCenter}px;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:22px;white-space:nowrap;`
+            : 'visibility:hidden;position:absolute;display:flex;align-items:center;gap:22px;'),
       navDisplayMobile: m ? 'flex' : 'none',
       heroCols: m ? '1fr' : 'minmax(0, 48fr) minmax(0, 52fr)',
       heroMinHeight: m ? 'auto' : '92vh',
